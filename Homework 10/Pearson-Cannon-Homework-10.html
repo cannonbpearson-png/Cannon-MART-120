@@ -1,0 +1,115 @@
+<html>
+
+    <head>
+        <title>
+            First p5.js page
+        </title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+        <script src="sketch.js"></script>
+
+  <script>
+var x = 220;
+var y = 200;
+var diameter = 60;
+var movement = 1;
+
+var headX = 300;
+var headY = 300;
+var headDirection = 1;
+
+var neckX = 270;
+var neckY = 500;
+var neckDirection = 5;
+
+var mouthX = 200;
+var mouthY = 450;
+var mouthDirection = 7;
+
+var size = 30;
+var count = 0;
+var sizeDirection = 5;
+
+var eyeX = 400
+var eyeY = 200
+var eyeDirection = 5
+
+
+
+            function setup()
+            {
+                createCanvas(600,600);
+		movement = floor(random() * 10) + 1;
+            }
+            function draw()
+            {
+                background(220);
+		 circle(headX,headY,400);
+ headX+=headDirection;
+    if(headX >= 450 || headX <= 82)
+    {
+        headDirection *= -1;
+    }
+
+		
+		 rect(270,neckY,100,150);
+    neckY += neckDirection;
+    if(neckY <= 50 || neckY >= 600 )
+    {
+        neckDirection *= -1;
+    }
+		line(200,mouthY,450,400);
+ mouthY += mouthDirection;
+    if(mouthY <= 50 || mouthY >= 600 )
+    {
+        mouthDirection *= -1;
+    }
+
+		circle(x,y,diameter);
+		    x+=movement;
+    if(x >= 500 || x <= 95)
+    {
+        movement *= -1;
+    }
+
+
+		circle(eyeX,eyeY,60);
+		 eyeX+=movement;
+    if(eyeX >= 550 || eyeX <= 80)
+    {
+        eyeDirection *= -1;
+    
+ if(eyeY <= 50 || eyeY >= 600 )
+    
+        eyeDirection *= -1;
+    }
+
+
+		circle(220,200,30);
+		circle(400,200,30);
+		point(220,200);
+		point(400,200);
+		line(200, 150, 250, 150);
+		line(380, 150, 430, 150);
+		line(148,150,300,100);
+		line(300,100,450,150);
+		 triangle(250, 350, 300, 300, 350, 350);
+		text('Cannon Pearson',10, 30);
+		textSize(size);
+    size+= sizeDirection;
+    count++;
+    if(count > 5)
+    {
+        sizeDirection *=-1;
+        count = 0;
+    }
+    text('"Geometric Beauty of the Self"',10, 50);
+
+
+
+            }
+</script>
+    </head>
+    <body>
+
+    </body>
+</html>
