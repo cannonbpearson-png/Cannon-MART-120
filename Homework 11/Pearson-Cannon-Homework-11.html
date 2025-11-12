@@ -1,0 +1,213 @@
+<html>
+
+    <head>
+        <title>
+            First p5.js page
+        </title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+        <script src="sketch.js"></script>
+
+  <script>
+// x and y for the player
+var playerX = 200;
+var playerY = 200;
+// define the key codes for each letter
+var w = 87; 
+var s = 83;
+var a = 65;
+var d = 68;
+
+
+var shapeX = 30;
+var shapeY = 50;
+var shapeXSpeed;
+var shapeYSpeed;
+
+var shape2X = 350;
+var shape2Y = 400;
+var shape2XSpeed;
+var shape2YSpeed;
+
+
+// create mouse obstacle
+var mouseShapeX;
+var mouseShapeY;
+function setup()
+{
+    createCanvas(800, 800);
+    // initiate random speed
+    shapeXSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+    shapeYSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+   
+shape2XSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 6)) + 5);
+     createPlayer(400,400);
+}
+
+function draw()
+{
+    background(255, 165, 0);
+    stroke(0);
+    fill(0);
+    
+    // call createBorders function
+    createBorders(10);
+
+    // exit message
+    textSize(16);
+    text("EXIT", width-50,height-50)
+
+    //createPlayer(250,300);
+    drawPlayer();
+    playerMovement();
+
+
+    // enemy 1
+    fill(14,150,16);
+    // draw the shape
+    circle(shapeX, shapeY, 30);
+
+	// enemy 2
+    fill('#fae');
+    // draw the shape
+    square(shape2X, shape2Y, 35);
+
+
+     // initial speed 1
+     shapeXSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+     shapeYSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
+
+// initial speed 2
+shape2XSpeed = Math.floor(Math.random() * (Math.floor(Math.random() * 6)) + 5);
+
+    // movement 1
+    shapeX += shapeXSpeed;
+    shapeY += shapeYSpeed;
+        if(shapeX > width)
+    {
+        shapeX = 0;
+    }
+    if(shapeX < 0)
+    {
+        shapeX = width;
+    }
+    if(shapeY > height)
+    {
+        shapeY = 0;
+    }
+    if(shapeY < 0)
+    {
+        shapeY = height;
+    }
+
+// movement 2
+    shape2X += shape2XSpeed;
+    
+        if(shape2X > width)
+    {
+        shape2X = 0;
+    }
+    if(shape2X < 0)
+    {
+        shape2X = width;
+    }
+    if(shape2Y > height)
+    {
+        shape2Y = 0;
+    }
+    if(shape2Y < 0)
+    {
+        shape2Y = height;
+    }
+
+
+    // check progress
+    if(playerX > width && playerY > width-50)
+    {
+        fill(0);
+        stroke(5);
+        textSize(26);
+        text("Congratulations!", width/2-80, height/2-100);
+    }
+
+    // create the shape based on the mouse click
+    fill (255, 0, 0, 128);
+    square(mouseShapeX, mouseShapeY, 50);
+}
+
+function playerMovement()
+{
+    // handle the keys
+    if(keyIsDown(w))
+    {
+        playerY -= 10;   
+    }
+    if(keyIsDown(s))
+    {
+        playerY += 10;   
+    }
+    if(keyIsDown(a))
+    {
+        playerX -= 10;   
+        console.log("movement: " + playerX);
+    }
+    if(keyIsDown(d))
+    {
+        playerX += 10;   
+    }
+}
+function createPlayer(x,y)
+{
+    playerX = x;
+    playerY = y;
+    console.log(playerX);
+    
+    
+   // circle(playerX,playerY,25);
+}
+
+function drawPlayer()
+{
+    fill(255, 300, 0);
+    square(playerX,playerY,20);
+}
+function createBorders(thickness)
+{
+    // top border
+    rect(0,0,width,thickness);
+    // left border
+    rect(0,0,thickness,height);
+    // bottom border
+    rect(0, height-thickness,width, thickness);
+    // right upper border
+    rect(width-thickness,0,thickness,height-50);
+}
+
+function mouseClicked()
+{
+    mouseShapeX = mouseX;
+    mouseShapeY = mouseY;
+}
+/*
+function keyPressed() {
+    if (keyCode === LEFT_ARROW) {
+        playerX -= 10;
+    } 
+    else if (keyCode === RIGHT_ARROW) {
+        playerX += 10;
+    }
+    else if (keyCode === UP_ARROW) {
+        playerY -= 10;
+    }
+    else if (keyCode === DOWN_ARROW) {
+        playerY += 10;
+    }
+
+  }
+  */
+</script>
+    </head>
+    <body>
+
+    </body>
+
+</html>
